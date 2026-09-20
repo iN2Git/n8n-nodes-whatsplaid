@@ -1,0 +1,42 @@
+# Publishes the exact package version represented by a version tag. Configure
+# npm Trusted Publishing for iN2Git/n8n-nodes-whatsplaid and publish.yml before
+# pushing the first tag. No NPM_TOKEN repository secret is used.
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: 'npm ci'
+
+      - name: Verify tag matches package version
+        run: |
+          node -e "if (process.env.GITHUB_REF_NAME !== require('./package.json').version) process.exit(1)"
+
+      - name: Test package
+        run: 'npm test'
+
+      - name: Publish to npm
+        run: 'npm publish'
