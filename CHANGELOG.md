@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Updated the public package author email for n8n Creator Portal ownership verification.
+
 ## 0.2.1
 
 - Published through GitHub Actions with npm provenance and trusted publishing.

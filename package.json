@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-whatsplaid",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Use the Whatsplaid API in n8n workflows.",
   "license": "MIT",
   "homepage": "https://whatsplaid.com",
@@ -10,7 +10,7 @@
   "keywords": ["n8n-community-node-package", "whatsplaid", "whatsapp", "automation", "crm"],
   "author": {
     "name": "iN2",
-    "email": "36140509+iN2Git@users.noreply.github.com"
+    "email": "support@whatsplaid.com"
   },
   "repository": {
     "type": "git",
