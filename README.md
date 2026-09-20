@@ -68,7 +68,7 @@ to the public API.
 ## Compatibility
 
 This package is built with the official `n8n-node` tool and targets the current n8n node API version 1.
-Version `0.2.0` was built and tested against `n8n-workflow` 2.39.3.
+Version `0.2.1` was built and tested against `n8n-workflow` 2.39.3.
 
 ## Usage
 
@@ -90,5 +90,6 @@ data source directly and doesn't require its credentials.
 
 ## Version history
 
+- `0.2.1`: GitHub Actions trusted publishing with npm provenance.
 - `0.2.0`: Coverage of all actionable resources in Whatsplaid API 1.5.0.
 - `0.1.0`: Initial development version with credentials, capability discovery, and store information.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Published through GitHub Actions with npm provenance and trusted publishing.
+
 ## 0.2.0
 
 - Added all actionable resources from Whatsplaid API 1.5.0.
