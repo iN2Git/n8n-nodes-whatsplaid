@@ -67,8 +67,7 @@ to the public API.
 
 ## Compatibility
 
-This package is built with the official `n8n-node` tool and targets the current n8n node API version 1.
-Version `0.2.1` was built and tested against `n8n-workflow` 2.39.3.
+This package is built with the official `n8n-node` tool and validated through GitHub Actions with Node.js 24.
 
 ## Usage
 
@@ -79,10 +78,6 @@ check these capabilities rather than infer access from the presence of the node.
 Whatsplaid can only send a message as a reply to a conversation already initiated by the contact and while
 the applicable WhatsApp service window is open. The node will not provide proactive messaging operations.
 
-The Product and Order resources call the Whatsplaid public API. Whatsplaid then queries the external
-product and order REST API configured for the connected account; the n8n node doesn't call that external
-data source directly and doesn't require its credentials.
-
 ## Resources
 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
@@ -90,6 +85,9 @@ data source directly and doesn't require its credentials.
 
 ## Version history
 
+- `0.2.4`: Correct n8n codex identifier and npm provenance publication.
+- `0.2.3`: Codex identifier correction superseded by 0.2.4.
+- `0.2.2`: Public support email for Creator Portal verification.
 - `0.2.1`: GitHub Actions trusted publishing with npm provenance.
 - `0.2.0`: Coverage of all actionable resources in Whatsplaid API 1.5.0.
 - `0.1.0`: Initial development version with credentials, capability discovery, and store information.

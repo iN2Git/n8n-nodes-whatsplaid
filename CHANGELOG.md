@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.4
+
+- Fixed the node codex identifier to use the required `<package-name>.<nodeName>` format.
+- Published through GitHub Actions with an npm provenance statement.
+
+## 0.2.3
+
+- Published the codex identifier fix without provenance; superseded by 0.2.4.
+
 ## 0.2.2
 
 - Updated the public package author email for n8n Creator Portal ownership verification.

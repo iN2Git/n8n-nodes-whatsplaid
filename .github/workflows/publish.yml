@@ -1,6 +1,5 @@
-# Publishes the exact package version represented by a version tag. Configure
-# npm Trusted Publishing for iN2Git/n8n-nodes-whatsplaid and publish.yml before
-# pushing the first tag. No NPM_TOKEN repository secret is used.
+# Publishes the exact package version represented by a version tag. npm Trusted
+# Publishing must authorize iN2Git/n8n-nodes-whatsplaid and publish.yml.
 
 name: Publish
 
@@ -38,5 +37,5 @@ jobs:
       - name: Test package
         run: 'npm test'
 
-      - name: Publish to npm
-        run: 'npm run release'
+      - name: Publish to npm with provenance
+        run: 'npm publish --provenance --access public'
