@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5
+
+- Added the standard n8n Return All and Limit pattern to list operations.
+- Added internal offset pagination for contacts, tickets, and conversations.
+- Grouped optional inputs under Additional Fields and list filters under Filters.
+
 ## 0.2.4
 
 - Fixed the node codex identifier to use the required `<package-name>.<nodeName>` format.

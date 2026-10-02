@@ -24,10 +24,16 @@ export const aiAgentDescription: INodeProperties[] = [
 		routing: { send: { type: 'body', property: 'prompt' } },
 	},
 	{
-		displayName: 'Expected Revision', name: 'expectedRevision', type: 'string', default: '',
-		description: 'SHA-256 revision returned by Get Prompt, used to prevent accidental overwrites',
+		displayName: 'Additional Fields', name: 'additionalFields', type: 'collection',
+		placeholder: 'Add Field', default: {},
 		displayOptions: { show: promptUpdate },
-		routing: { send: { type: 'body', property: 'expected_revision' } },
+		options: [
+			{
+				displayName: 'Expected Revision', name: 'expectedRevision', type: 'string', default: '',
+				description: 'SHA-256 revision returned by Get Prompt, used to prevent accidental overwrites',
+				routing: { send: { type: 'body', property: 'expected_revision' } },
+			},
+		],
 	},
 	{
 		displayName: 'Conversation ID', name: 'conversationId', type: 'string', required: true, default: '',

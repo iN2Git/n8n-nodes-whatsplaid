@@ -85,6 +85,7 @@ the applicable WhatsApp service window is open. The node will not provide proact
 
 ## Version history
 
+- `0.2.5`: Standard n8n list pagination and optional-field collections.
 - `0.2.4`: Correct n8n codex identifier and npm provenance publication.
 - `0.2.3`: Codex identifier correction superseded by 0.2.4.
 - `0.2.2`: Public support email for Creator Portal verification.

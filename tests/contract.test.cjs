@@ -27,6 +27,24 @@ function operationsByResource(description) {
 	);
 }
 
+function operation(description, resource, value) {
+	return description.properties
+		.find(
+			(property) =>
+				property.name === 'operation' && property.displayOptions?.show?.resource?.includes(resource),
+		)
+		.options.find((candidate) => candidate.value === value);
+}
+
+function property(description, resource, operationValue, name) {
+	return description.properties.find(
+		(candidate) =>
+			candidate.name === name &&
+			candidate.displayOptions?.show?.resource?.includes(resource) &&
+			candidate.displayOptions?.show?.operation?.includes(operationValue),
+	);
+}
+
 test('uses the public Whatsplaid API and capability discovery for credential testing', () => {
 	const node = new Whatsplaid();
 	const credential = new WhatsplaidApi();
@@ -89,4 +107,51 @@ test('does not expose aliases or outgoing event documentation as actions', () =>
 
 	assert.equal(routes.includes('GET /me'), false);
 	assert.equal(routes.some((route) => route.includes('/webhook/outgoing/lead-capture')), false);
+});
+
+test('uses the standard Return All pattern and internal offset pagination for list operations', () => {
+	const description = new Whatsplaid().description;
+
+	for (const resource of ['contact', 'ticket', 'conversation']) {
+		const listOperation = operation(description, resource, 'getMany');
+		const pagination = listOperation.routing.operations.pagination;
+		const returnAll = property(description, resource, 'getMany', 'returnAll');
+		const limit = property(description, resource, 'getMany', 'limit');
+
+		assert.deepEqual(pagination, {
+			type: 'offset',
+			properties: {
+				limitParameter: 'limit',
+				offsetParameter: 'offset',
+				pageSize: 100,
+				type: 'query',
+			},
+		});
+		assert.equal(returnAll.routing.send.paginate, '={{$value}}');
+		assert.deepEqual(limit.displayOptions.show.returnAll, [false]);
+		assert.equal(property(description, resource, 'getMany', 'offset'), undefined);
+	}
+});
+
+test('groups optional inputs into n8n collections', () => {
+	const description = new Whatsplaid().description;
+	const expectedCollections = [
+		['contact', 'createOrUpdate', 'additionalFields', ['customFields', 'email', 'name', 'tags']],
+		['contact', 'getMany', 'filters', ['dateFrom', 'email', 'phone', 'tag']],
+		['ticket', 'getMany', 'filters', ['dateFrom', 'phone', 'status']],
+		['conversation', 'getMany', 'filters', ['dateFrom', 'phone']],
+		['handoff', 'request', 'additionalFields', ['category', 'email', 'name', 'priority', 'reason']],
+		['order', 'search', 'additionalFields', ['email', 'number', 'phone']],
+		['product', 'search', 'additionalFields', ['url']],
+		['aiAgent', 'updatePrompt', 'additionalFields', ['expectedRevision']],
+	];
+
+	for (const [resource, operationValue, name, expectedOptions] of expectedCollections) {
+		const collection = property(description, resource, operationValue, name);
+		assert.equal(collection.type, 'collection');
+		assert.deepEqual(
+			collection.options.map((option) => option.name),
+			expectedOptions,
+		);
+	}
 });

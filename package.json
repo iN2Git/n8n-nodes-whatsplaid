@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-whatsplaid",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Use the Whatsplaid API in n8n workflows.",
   "license": "MIT",
   "homepage": "https://whatsplaid.com",

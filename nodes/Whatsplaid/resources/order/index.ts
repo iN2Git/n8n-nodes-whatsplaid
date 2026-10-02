@@ -10,8 +10,17 @@ export const orderDescription: INodeProperties[] = [
 		], default: 'search',
 	},
 	{ displayName: 'Order ID or Number', name: 'orderId', type: 'string', required: true, default: '', displayOptions: { show: { resource: ['order'], operation: ['get'] } } },
-	{ displayName: 'Order Number', name: 'number', type: 'string', default: '', displayOptions: { show: { resource: ['order'], operation: ['search'] } }, routing: { send: { type: 'query', property: 'number' } } },
-	{ displayName: 'Email', name: 'email', type: 'string',
-																																								placeholder: 'name@email.com', default: '', displayOptions: { show: { resource: ['order'], operation: ['search'] } }, routing: { send: { type: 'query', property: 'email' } } },
-	{ displayName: 'Phone', name: 'phone', type: 'string', default: '', displayOptions: { show: { resource: ['order'], operation: ['search'] } }, routing: { send: { type: 'query', property: 'phone' } } },
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: { show: { resource: ['order'], operation: ['search'] } },
+		options: [
+			{ displayName: 'Email', name: 'email', type: 'string', placeholder: 'name@email.com', default: '', routing: { send: { type: 'query', property: 'email' } } },
+			{ displayName: 'Order Number', name: 'number', type: 'string', default: '', routing: { send: { type: 'query', property: 'number' } } },
+			{ displayName: 'Phone', name: 'phone', type: 'string', default: '', routing: { send: { type: 'query', property: 'phone' } } },
+		],
+	},
 ];

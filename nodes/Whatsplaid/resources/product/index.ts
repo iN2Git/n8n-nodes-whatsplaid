@@ -11,5 +11,19 @@ export const productDescription: INodeProperties[] = [
 	},
 	{ displayName: 'Product ID', name: 'productId', type: 'string', required: true, default: '', displayOptions: { show: { resource: ['product'], operation: ['get'] } } },
 	{ displayName: 'Query', name: 'query', type: 'string', default: '', description: 'Product name, SKU, tag, or description', displayOptions: { show: { resource: ['product'], operation: ['search'] } }, routing: { send: { type: 'query', property: 'q' } } },
-	{ displayName: 'Product URL', name: 'url', type: 'string', default: '', description: 'Known product URL when available', displayOptions: { show: { resource: ['product'], operation: ['search'] } }, routing: { send: { type: 'query', property: 'url' } } },
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: { show: { resource: ['product'], operation: ['search'] } },
+		options: [
+			{
+				displayName: 'Product URL', name: 'url', type: 'string', default: '',
+				description: 'Known product URL when available',
+				routing: { send: { type: 'query', property: 'url' } },
+			},
+		],
+	},
 ];
